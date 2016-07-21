@@ -20,7 +20,7 @@ def update
   @comment = Comment.find(params[:id])
   respond_to do |format|
     if @comment.update(comment_params)
-      format.html{redirect_to recipe_path( @comment.recipe_id), notice: 'Comment was successfully created.'}
+      format.html{redirect_to recipe_path(@comment.recipe_id), notice: 'Comment was successfully created.'}
     else
       format.html { redirect_to recipes_path}
     end
