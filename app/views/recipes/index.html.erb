@@ -25,14 +25,12 @@
             <%= link_to "Learn More About #{recipe.title}", recipe %>
           </div>
           <% if user_signed_in? && current_user.id == recipe.user.id %>
-          <div class="panel-footer">
-            <%= link_to 'Edit', edit_recipe_path(recipe), class: "btn btn-warning" %>
-            <%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-          </div>
-          <% end %>
+                <div class="panel-footer">
+                  <%= link_to 'Edit', edit_recipe_path(recipe), class: "btn btn-warning" %>
+                  <%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                </div>
+             <% end %>
         </div>
       </div>
     <% end %>
   </div>
-
- <%= link_to 'New Recipe', new_recipe_path %>
