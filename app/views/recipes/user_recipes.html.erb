@@ -8,19 +8,21 @@
      <div class="col-sm-6 col-md-4">
       <div class="panel panel-default panel-transparent">
        <div class="panel-body">
-       <% if recipe.avatar_file_name != nil %>
+        <% if recipe.avatar_file_name != nil %>
           <%= image_tag recipe.avatar.url(:thumb) %>
-       <% end %>
-       <h2><%= link_to recipe.title, recipe %></h2>
-       <h4>by <%= recipe.category %></h4>
-       <p>
-        <%= recipe.created_at.localtime.strftime("%I:%M%p, %b %d, %Y") %></p>
-        <p><%= recipe.comments.count %> comments</p>
-        <p>recipe.ratings.count</p>
-        <p>recipe.ratings.average</p>
+        <% end %>
+         <h2><%= link_to recipe.title, recipe %></h2>
+         <h4> <%= recipe.category %></h4>
+         <p>
+          <%= recipe.created_at.localtime.strftime("%I:%M%p, %b %d, %Y") %></p>
+         <p><%= recipe.comments.count %> comments</p>
+         <% unless recipe.comments.count == 0  ||
+                   recipe.comments == nil %>
+            <p>Avg. Rating: <%= recipe.average_rating %></p>
+         <% end %>
        </div>
       </div>
      </div>
-     <% end %>
+    <% end %>
   </div>
 </div>

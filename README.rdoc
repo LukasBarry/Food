@@ -1,27 +1,8 @@
 Still Need:
 
-comments form and edit
+Comments form-partial --> needs some cosmetic fixering up
 
-recipes show and index
-
- Add image selection/upload field to edit/create pages
-
- Add image(s) to recipe show page
-
- Add image (thumb) to recipe index page
-
- Add rating selection to comment form
-
- 'my_recipes' page
-
- 'user_recipes' page
+Comments edit page ----> we still need one
 
 
-For recipe/show ----
-
-=====main recipe panel shows Average Rating with:
-Average Rating:
-<%= @recipe.average_rating %>
-
-====each comment panel shows Rating with:
-    Recipe rating: <%= comment.recipe_rating %>
+Recipe Show page -----> Only a bit of streamlinery fine tuning 

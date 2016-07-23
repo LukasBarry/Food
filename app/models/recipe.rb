@@ -10,11 +10,13 @@ class Recipe < ActiveRecord::Base
  belongs_to :user
 
   def average_rating
-    ratings =[]
+    ratings =[0]
     self.comments.each do |comment|
-      ratings << comment.recipe_rating
+      unless comment.recipe_rating == 0
+        ratings << comment.recipe_rating
+      end
     end
     sum = ratings.reduce(:+)
-    average_rating = sum / (ratings.count)
+    average_rating = sum / (ratings.count - 1)
   end
 end
