@@ -8,4 +8,13 @@ class Recipe < ActiveRecord::Base
 
  has_many :comments
  belongs_to :user
+
+  def average_rating
+    ratings =[]
+    self.comments.each do |comment|
+      ratings << comment.recipe_rating
+    end
+    sum = ratings.reduce(:+)
+    average_rating = sum / (ratings.count)
+  end
 end

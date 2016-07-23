@@ -9,11 +9,10 @@ Rails.application.routes.draw do
 
   get 'my_recipes' => 'recipes#my_recipes'
 
-  get 'user_recipes' => 'recipes#user_recipes' 
+  get 'user_recipes' => 'recipes#user_recipes'
 
   get 'recipes/show'
 
   get 'recipes/edit'
 
-  get 'comments/index'
 end

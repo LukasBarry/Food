@@ -17,7 +17,6 @@ class RecipesController < ApplicationController
     # GET /recipes/1.json
     def show
       @comment = Comment.new
-
     end
 
     # GET /recipes/new
@@ -65,6 +64,6 @@ class RecipesController < ApplicationController
       end
       # Never trust parameters from the scary internet, only allow the white list through.
       def recipe_params
-        params.require(:recipe).permit(:title, :category,  :recipe_ingredients, :avatar, :recipe_instructions, :user_id, :remove_avatar, :rating)
+        params.require(:recipe).permit(:title, :category,  :recipe_ingredients, :avatar, :recipe_instructions, :user_id, :remove_avatar, :average_rating)
       end
   end

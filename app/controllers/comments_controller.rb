@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   @comment = Comment.create(comment_params)
   respond_to do |format|
     if @comment.save
-      format.html{redirect_to recipe_path(@comment.recipe.id), notice: "Comment was successfully created"}
+      format.html{redirect_to recipe_path(@comment.recipe_id), notice: "Comment was successfully created"}
     else
       format.html {redirect_to recipes_path}
     end
@@ -38,7 +38,7 @@ end
 private
 
 def comment_params
-  params.require(:comment).permit(:comment_entry, :recipe_id, :user_id)
+  params.require(:comment).permit(:comment_entry, :recipe_id, :user_id, :rating1, :rating2, :rating3, :rating4, :rating5)
 end
 
 

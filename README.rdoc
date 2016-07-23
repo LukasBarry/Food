@@ -15,3 +15,13 @@ recipes show and index
  'my_recipes' page
 
  'user_recipes' page
+
+
+For recipe/show ----
+
+=====main recipe panel shows Average Rating with:
+Average Rating:
+<%= @recipe.average_rating %>
+
+====each comment panel shows Rating with:
+    Recipe rating: <%= comment.recipe_rating %>
