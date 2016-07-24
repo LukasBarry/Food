@@ -10,7 +10,7 @@ class Recipe < ActiveRecord::Base
  belongs_to :user
 
   def average_rating
-    ratings =[0]
+    ratings =[]
     self.comments.each do |comment|
       unless comment.recipe_rating == 0
         ratings << comment.recipe_rating
