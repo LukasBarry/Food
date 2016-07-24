@@ -16,7 +16,9 @@ class Recipe < ActiveRecord::Base
         ratings << comment.recipe_rating
       end
     end
-    sum = ratings.reduce(:+)
-    average_rating = sum / (ratings.count)
+    unless ratings.count == 0
+      sum = ratings.reduce(:+)
+      average_rating = sum / (ratings.count)
+    end
   end
 end

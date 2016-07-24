@@ -1,28 +1,28 @@
-<div class="container-fluid">
-  <h3><strong><%=@user.username %></strong> believes that <%= @user.personal_metaphysical_hero %> would totally dig any of these Grublets:</h3>
-</div><br />
+
+
+
 
 <div class="row">
   <div class="container-fluid">
+    <h3><%= @user.personal_metaphysical_hero %> would totally dig any of these Grublets:</h3>
      <% @user.recipes.each do |recipe| %>
-     <div class="col-sm-6 col-md-4">
-      <div class="panel panel-default panel-transparent">
-       <div class="panel-body">
-        <% if recipe.avatar_file_name != nil %>
-          <%= image_tag recipe.avatar.url(:thumb) %>
-        <% end %>
-         <h2><%= link_to recipe.title, recipe %></h2>
-         <h4> <%= recipe.category %></h4>
-         <p>
-          <%= recipe.created_at.localtime.strftime("%I:%M%p, %b %d, %Y") %></p>
-         <p><%= recipe.comments.count %> comments</p>
-         <% unless recipe.comments.count == 0  ||
-                   recipe.comments == nil %>
-            <p>Avg. Rating: <%= recipe.average_rating %></p>
+       <div class="col-sm-6 col-md-4">
+        <div class="panel panel-default panel-transparent">
+         <div class="panel-body">
+          <% if recipe.avatar_file_name != nil %>
+            <%= image_tag recipe.avatar.url(:thumb) %>
+          <% end %>
+          <h3><%= link_to recipe.title, recipe %></h3>
+          <h4> <%= recipe.category %></h4>
+          <p>
+           <%= recipe.created_at.localtime.strftime("%I:%M%p, %b %d, %Y") %></p>
+          <p><%= recipe.comments.count %> comments</p>
+         <% unless recipe.average_rating == nil %>
+            <p>Avg. Rating: <%= recipe.average_rating %> out of 5</p>
          <% end %>
+         </div>
+        </div>
        </div>
-      </div>
-     </div>
-    <% end %>
+     <% end %>
   </div>
 </div>
