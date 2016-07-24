@@ -36,6 +36,10 @@
   background: linear-gradient(to bottom,#EFF2C0,#A5A87F 100%);
 
 }
+
+.container {
+    background: rgba(255, 255, 255, 0.7);
+  }
 /*#080F0F
 
 #A4BAB7
