@@ -70,7 +70,7 @@
         </div>
         <% if user_signed_in? && current_user.id ==  comment.user.id %>
           <div class="panel-footer">
-           <%= link_to "Edit Comment", edit_recipe_path(@recipe, comment), class:"btn btn-default" %>
+           <%= link_to "Edit Comment", edit_recipe_comment_path(@recipe, comment), class:"btn btn-default" %>
            <%= link_to 'Remove Comment', [comment.recipe, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
           </div>
         <% end %>
