@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   background: linear-gradient(5deg,#6A7B76,#A4BAB7 100%) fixed;
+ }
+
+ .cant-see-me  {
+   display: none;
+ }
+ .navbar-inverse .navbar-nav>li>a  {
+   color: #D8DBAB;
+ }
+.navbar-inverse {
+  background-image: linear-gradient(0.1deg,#080F0F,#6A7B76 100%);
+
+}
+.navber-inverse .navbar-nav>p {
+  color: #D8DBAB;
+}
+
+.btn-default {
+  background: linear-gradient(to bottom,#EFF2C0,#A5A87F 100%);
+
+}
+/*#080F0F
+
+#A4BAB7
+
+#6A7B76
+
+#EFF2C0
+
+#DBCDC6*/

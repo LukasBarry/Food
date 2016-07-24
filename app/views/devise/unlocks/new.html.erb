@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <form class="form-horizontal">
+
+      <h2>Resend unlock instructions</h2>
+
+      <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="form-group">
+        <label for="inputEmail5" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-4">
+          <%= f.email_field :email, class:"form-control",
+          id:"inputEmail5", placeholder:"Email" %>
+        </div>
+      </div>
+
+      <div class="action-group">
+        <div class="col-sm-offset-1 col-sm-3">
+           <%= f.submit "Resend unlock instructions", class:"btn btn-default" %>
+        </div>
+      </div>
+      <% end %>
+      </form>
+    </div>
+  </div>
+  <%= render "devise/shared/links" %>
+</div>

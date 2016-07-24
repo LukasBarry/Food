@@ -1,2 +1,36 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<!-- Pretty damned great! -->
+<!-- I'll just toss in the avatars and ratings and be on my way -->
+
+<h1>FoodScape</h1>
+<p><em>Recipes for the Gastronomical Landscape</em></p>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= recipe.title %>
+          </div>
+          <div class="panel-body">
+            <% if recipe.avatar_file_name != nil %>
+              <%= image_tag recipe.avatar.url(:thumb) %>
+            <% end %>
+            by <strong><%= link_to recipe.user.username, user_recipes_path(id: recipe.user.id) %></strong>
+            <p><span class="posted-at">posted at: <%=recipe.
+            created_at.strftime('%m/%d/%Y at %I:%M%p') %></span></p>
+            <% unless recipe.comments.count == 0  ||
+                      recipe.comments == nil %>
+               <p>Avg. Rating: <%= recipe.average_rating %></p>
+            <% end %>
+            <p><%= truncate(recipe.recipe_instructions, length:250, separator: ' ') %></p>
+            <%= link_to "Learn More About #{recipe.title}", recipe %>
+          </div>
+          <% if user_signed_in? && current_user.id == recipe.user.id %>
+                <div class="panel-footer">
+                  <%= link_to 'Edit', edit_recipe_path(recipe), class: "btn btn-warning" %>
+                  <%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                </div>
+             <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>

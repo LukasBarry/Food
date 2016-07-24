@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
     before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
-    def your_recipes
+    def my_recipes
 
     end
 
@@ -62,11 +62,8 @@ class RecipesController < ApplicationController
       def set_recipe
         @recipe = Recipe.find(params[:id])
       end
-
       # Never trust parameters from the scary internet, only allow the white list through.
       def recipe_params
-        params.require(:recipe).permit(:title, :recipe_ingredients, :avatar, :recipe_instructions, :user_id)
+        params.require(:recipe).permit(:title, :category,  :recipe_ingredients, :avatar, :recipe_instructions, :user_id, :remove_avatar, :average_rating)
       end
   end
-
-end

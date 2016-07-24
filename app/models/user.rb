@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :recipes
   has_many :comments
+
+  def my_recipes
+    @my_recipes = Recipe.find(:user_id)
+  end
+
 end

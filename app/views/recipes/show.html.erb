@@ -1,2 +1,90 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<!-- these are for the image and the ratings.
+Put them wherever you'd like===========-->
+   <% if @recipe.avatar_file_name != nil %>
+      <%= image_tag @recipe.avatar.url(:medium) %>
+   <% end %>
+<!--  ========-->
+   <% unless @recipe.comments.count == 0  ||
+      @recipe.comments == nil %>
+        <p><%= @recipe.comments.count %> comments</p>
+        <p>Avg. Rating: <%= @recipe.average_rating %> out of 5</p>
+   <% end %>
+<!-- ===== -->
+<h4>Grub Recipe</h4>
+<div class="panel panel-primary">
+  <div class="panel heading"> <!-- <=== Heading -->
+    <%= @recipe.title %>
+  </div>
+</div> <!-- remove if you want other stuff on this panel -->
+
+<h4>Ingredients</h4>
+<div class="panel panel-primary">
+  <div class="panel heading"> <!-- <=====heading -->
+    <%= @recipe.recipe_ingredients %>
+  </div>
+</div> <!-- same thing here-->
+
+<h4>Instructions</h4>
+<div class="panel panel-primary">
+  <div class="panel heading"> <!-- <===heading -->
+  <%= @recipe.recipe_instructions %>
+  </div>
+</div><!--3rd panel without a 'panel-body'-->
+
+<!-- No love for the Category attribute?-->
+
+<div class="panel-body">
+  by <strong><%= link_to @recipe.user.username,
+  user_recipes_path(id: @recipe.user.id) %></strong>
+  <span class="posted at">posted at: <%= @recipe.created_at.strftime('%m/%d/%Y at %I:%M%p') %></span><br />
+</div><!--this is a disembodied 'body'-->
+
+
+  <% if user_signed_in? %>
+     <% if current_user.id == @recipe.user.id %>
+<!--^^ I split the logic into 2 nested IF's
+so that a user cannot comment on her own recipe AND we catch the case where an unsigned-in visitor might still be able to make a comment, thus causing an ":id" error -->
+        <div class="panel-footer">
+        <%= link_to 'Edit', edit_recipe_path(@recipe), class: "btn btn-warning" %>
+         <%= link_to 'Destroy', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </div><!--footer without a panel to live in-->
+     <% else %>
+       <div class="panel panel-success"><!--no closing tag-->
+        <div class="panel-heading">
+          Write a comment
+       </div>
+       <div class="panel-body">
+         <%= render 'comments/form' %>
+       </div>
+     <% end %>
+  <% end %>
+
+<!--the next panel starts before the previous one ends, and doesn't end either-->
+   <div class="panel panel-default">
+     <div class="panel-heading">
+      <h4>Comments</h4>
+    </div>
+
+    <% @recipe.comments.each do |comment| %>
+      <div class="panel panel-success">
+       <div class="panel-body">
+         <p><strong><%= link_to comment.user.username, user_recipes_path(id: comment.user.id) %></strong>
+          said: </p>
+         <p><%= comment.comment_entry %></p>
+          <% if comment.recipe_rating != nil %>
+             <p>and rated it:
+              <%= comment.recipe_rating %> out of 5</p>
+          <% end %>
+         <p><span class="posted-at"><%= comment.created_at.strftime ('%m/%d/%Y %H:%M:%S') %></span></p>
+<!---------------------------------------->
+         <% if user_signed_in? && current_user.id ==  comment.user.id %>
+<!--Comments also need this ^^^^^ -->
+            <%= link_to "Edit Comment", edit_recipe_path(@recipe, comment) %>
+            <%= link_to 'Destroy', [comment.recipe, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+         <% end %>
+       </div>
+    <% end %>
+ </div>
+<%= link_to 'Back', recipes_path %>

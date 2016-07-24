@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="col-md-offset-4 col-md-6">
+
+<h2><strong><%= @user.username %></strong></h2>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+
+<form class="form-horizontal">
+  <div class="form-group form-group-lg">
+    <label class="col-xs-6 col-md-4 control-label" for="inputEmail1">Email</label>
+    <div class="col-md-8">
+      <%= f.email_field :email, class:"form-control", id:"inputEmail1", placeholder:"Email" %>
+    </div>
+  </div>
+
+
+  <div class="form-group form-group-lg">
+    <label class="col-xs-6 col-md-4 control-label" for="inputName1">Name</label>
+    <div class="col-md-8">
+      <%= f.text_field :name, class:"form-control", id:"inputName1", placeholder:"First and Last Name" %>
+    </div>
+  </div>
+  <div class="form-group form-group-lg">
+    <label class="col-xs-6 col-md-4 control-label" for="inputBirthday1">Birthday</label>
+    <div class="col-md-8">
+      <%= f.date_field :birthday, class:"form-control", id:"inputBirthday1", placeholder:"Birthday" %>
+    </div>
+  </div>
+  <div class="form-group form-group-lg">
+    <label class="col-xs-6 col-md-4 control-label" for="inputPmh1">Personal Metaphysical Hero</label>
+    <div class="col-md-8">
+      <%= f.text_field :personal_metaphysical_hero, class:"form-control", id:"inputPmh1", placeholder:"Personal Metaphysical Hero" %>
+    </div>
+  </div>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="form-group form-group-lg">
+    <label class="col-xs-6 col-md-4 control-label" for="inputPassword1">Password</label>
+    <div class="col-md-8">
+      <%= f.password_field :password, autocomplete: "off",  class:"form-control", id:"inputPassword1", placeholder:"leave blank if you don't want to change it"%>
+    </div>
+  </div>
+  <div class="form-group form-group-lg">
+    <label class="col-xs-6 col-md-4 control-label" for="inputPassword2">Password Confirmation</label>
+    <div class="col-md-8">
+      <%= f.password_field :password_confirmation, autocomplete: "off",  class:"form-control", id:"inputPassword2", placeholder:"One more time please"%>
+    </div>
+  </div>
+  <div class="form-group form-group-lg">
+    <label class="col-xs-6 col-md-4 control-label" for="inputPassword3">Current Password</label>
+    <div class="col-md-8">
+      <%= f.password_field :current_password, autocomplete: "off",  class:"form-control", id:"inputPassword3", placeholder:"Type your current password to save your changes!"%>
+    </div>
+  </div>
+
+  <div class="action-group">
+    <div class="col-md-offset-4 col-md-6">
+      <%= f.submit "Update", class:"btn btn-default" %>
+      <%= link_to "Back", :back, class:"btn btn-default" %>
+
+    </div>
+  </div>
+</form>
+<% end %>
+
+</div>
+<br>
+
+<div class="container-fluid" align="right">
+<div class="row">
+  <div class="col-md-10">
+
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-default" %></p>
+
+</div>
+</div>
+</div>
